@@ -19,8 +19,13 @@ const useStyles = makeStyles({
     fontWeight: 'bold',
     fontSize: '1.5rem',
   },
+  toolbar: {
+    width: '70vw',
+    margin: '0 auto',
+    justifyContent: 'space-between',
+  },
   grow: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   section: {
     marginTop: 10,
