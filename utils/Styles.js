@@ -12,7 +12,19 @@ const useStyles = makeStyles({
     },
   },
   footer: {
+    marginTop: 10,
     textAlign: 'center',
+  },
+  brand: {
+    fontWeight: 'bold',
+    fontSize: '1.5rem',
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  section: {
+    marginTop: 10,
+    marginBottom: 10,
   },
 });
 
