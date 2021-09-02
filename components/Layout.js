@@ -11,6 +11,7 @@ import {
   ThemeProvider,
   Toolbar,
   Typography,
+  Badge,
 } from '@material-ui/core';
 import useStyles from '../utils/Styles';
 import { Store } from '../utils/Store';
@@ -59,25 +60,38 @@ export default function Layout({ children, title, description }) {
       <ThemeProvider theme={theme}>
         <CssBaseline></CssBaseline>
         <AppBar className={classes.navbar} position="static">
-          <Toolbar className={classes.toolbar}>
-            <NextLink href="/" passHref>
-              <Link>
-                <Typography className={classes.brand}>sprawlmart</Typography>
-              </Link>
-            </NextLink>
-            <div className={classes.grow}>
-              <Switch
-                checked={darkMode}
-                onChange={darkModeChangeHandler}
-              ></Switch>
-              <NextLink href="/cart" passHref>
-                <Link>Cart</Link>
+          <Container>
+            <Toolbar className={classes.toolbar}>
+              <NextLink href="/" passHref>
+                <Link>
+                  <Typography className={classes.brand}>sprawlmart</Typography>
+                </Link>
               </NextLink>
-              <NextLink href="/login" passHref>
-                <Link>Login</Link>
-              </NextLink>
-            </div>
-          </Toolbar>
+              <div className={classes.grow}>
+                <Switch
+                  checked={darkMode}
+                  onChange={darkModeChangeHandler}
+                ></Switch>
+                <NextLink href="/cart" passHref>
+                  <Link>
+                    {state.cart.cartItems.length > 0 ? (
+                      <Badge
+                        color="secondary"
+                        badgeContent={state.cart.cartItems.length}
+                      >
+                        Cart
+                      </Badge>
+                    ) : (
+                      'Cart'
+                    )}
+                  </Link>
+                </NextLink>
+                <NextLink className={classes.navitems} href="/login" passHref>
+                  <Link>Login</Link>
+                </NextLink>
+              </div>
+            </Toolbar>
+          </Container>
         </AppBar>
         <Container className={classes.main}>{children}</Container>
         <footer className={classes.footer}>

@@ -20,13 +20,10 @@ const useStyles = makeStyles({
     fontSize: '1.5rem',
   },
   toolbar: {
-    width: '70vw',
-    margin: '0 auto',
     justifyContent: 'space-between',
   },
-  grow: {
-    // flexGrow: 1,
-  },
+  grow: {},
+  navitems: {},
   section: {
     marginTop: 10,
     marginBottom: 10,
