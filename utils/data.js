@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
   products: [
     {
@@ -49,7 +51,7 @@ const data = {
       slug: 'golf-pants',
     },
     {
-      name: 'Slim Shirt',
+      name: 'Skinny Shirt',
       category: 'Pants',
       image: '/images/pants2.jpg',
       price: 40,
@@ -71,6 +73,20 @@ const data = {
       countInStock: 5,
       description: 'A nice pair of khaki pants',
       slug: 'khaki-pants',
+    },
+  ],
+  users: [
+    {
+      name: 'John',
+      email: 'admin@example.com',
+      password: bcrypt.hashSync('password'),
+      isAdmin: true,
+    },
+    {
+      name: 'Sarah',
+      email: 'sarah@example.com',
+      password: bcrypt.hashSync('password'),
+      isAdmin: false,
     },
   ],
 };

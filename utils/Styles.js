@@ -11,6 +11,11 @@ const useStyles = makeStyles({
       marginLeft: 10,
     },
   },
+  navbarButton: {
+    color: '#ffffff',
+    textTransform: 'initial',
+    marginLeft: 20,
+  },
   footer: {
     marginTop: 10,
     textAlign: 'center',
@@ -23,10 +28,16 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
   grow: {},
-  navitems: {},
+  navitems: {
+    marginLeft: 20,
+  },
   section: {
     marginTop: 10,
     marginBottom: 10,
+  },
+  form: {
+    maxWidth: 800,
+    margin: '0 auto',
   },
 });
 
