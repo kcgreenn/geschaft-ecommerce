@@ -39,6 +39,15 @@ const useStyles = makeStyles({
     maxWidth: 800,
     margin: '0 auto',
   },
+  productInfo: {
+    minHeight: '70vh',
+  },
+  relatedItems: {
+    minHeight: '15vh',
+  },
+  transparentBackground: {
+    backgroundColor: 'transparent',
+  },
 });
 
 export default useStyles;

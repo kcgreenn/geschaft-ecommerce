@@ -12,6 +12,9 @@ import {
   Typography,
   Card,
   Button,
+  Select,
+  MenuItem,
+  NoSsr,
 } from '@material-ui/core';
 import useStyles from '../../utils/Styles';
 import db from '../../utils/db';
@@ -24,6 +27,7 @@ export default function ProductScreen(props) {
   const { state, dispatch } = useContext(Store);
   const { product } = props;
   const classes = useStyles();
+  let selectedQuantity = 1;
 
   if (!product) {
     return <div>Product Not Found</div>;
@@ -32,7 +36,10 @@ export default function ProductScreen(props) {
   const addToCartHandler = async () => {
     const { data } = await axios.get(`/api/products/${product._id}`);
     const existItem = state.cart.cartItems.find((x) => x._id === product._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
+
+    const quantity = existItem
+      ? existItem.quantity + selectedQuantity
+      : selectedQuantity;
     if (data.countInStock < quantity) {
       window.alert('Sorry, product is unavailable.');
       return;
@@ -44,6 +51,10 @@ export default function ProductScreen(props) {
     router.push('/cart');
   };
 
+  const updateQuantityHandler = (quantity) => {
+    selectedQuantity = quantity;
+  };
+
   return (
     <Layout title={product.name} description={product.description}>
       <div className={classes.section}>
@@ -53,17 +64,17 @@ export default function ProductScreen(props) {
           </Link>
         </NextLink>
       </div>
-      <Grid container spacing={1}>
-        <Grid item md={6} xs={12}>
+      <Grid container spacing={1} className={classes.productInfo}>
+        <Grid item md={4} xs={12}>
           <Image
             src={product.image}
             alt={product.name}
-            width={640}
-            height={640}
+            width={480}
+            height={480}
             layout="responsive"
           ></Image>
         </Grid>
-        <Grid item md={3} xs={12}>
+        <Grid item md={4} xs={12}>
           <List>
             <ListItem>
               <Typography component="h1" variant="h1">
@@ -86,7 +97,7 @@ export default function ProductScreen(props) {
             </ListItem>
           </List>
         </Grid>
-        <Grid item md={3} xs={12}>
+        <Grid item md={4} xs={12}>
           <Card>
             <List>
               <ListItem>
@@ -95,19 +106,40 @@ export default function ProductScreen(props) {
                     <Typography>Price: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> ${product.price}</Typography>
+                    <Typography color="primary"> ${product.price}</Typography>
                   </Grid>
                 </Grid>
               </ListItem>
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Status: </Typography>
+                    <Typography>Availability: </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography>
-                      {product.countInStock > 0 ? 'In Stock' : 'Unavailable'}
+                      {product.countInStock > 0
+                        ? `${product.countInStock} Left In Stock`
+                        : 'Unavailable'}
                     </Typography>
+                  </Grid>
+                </Grid>
+              </ListItem>
+              <ListItem>
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Typography>Quantity: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Select
+                      value={selectedQuantity}
+                      onChange={(e) => updateQuantityHandler(e.target.value)}
+                    >
+                      {[...Array(product.countInStock).keys()].map((x) => (
+                        <MenuItem key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </Grid>
                 </Grid>
               </ListItem>
@@ -124,6 +156,11 @@ export default function ProductScreen(props) {
             </List>
           </Card>
         </Grid>
+      </Grid>
+      <Grid container className={classes.relatedItems}>
+        <Typography variant="h1" component="h1">
+          Similar Items
+        </Typography>
       </Grid>
     </Layout>
   );
