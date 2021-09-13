@@ -1,12 +1,11 @@
 import {
   Button,
   Card,
+  CircularProgress,
   Grid,
   Link,
   List,
   ListItem,
-  MenuItem,
-  Select,
   Table,
   TableBody,
   TableCell,
@@ -15,23 +14,27 @@ import {
   TableRow,
   Typography,
 } from '@material-ui/core';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import dynamic from 'next/dynamic';
 import { Store } from '../utils/Store';
 import NextLink from 'next/link';
 import axios from 'axios';
 import Image from 'next/Image';
-import router, { useRouter } from 'next/router';
-import { mergeClasses } from '@material-ui/styles';
+import { useRouter } from 'next/router';
 import useStyles from '../utils/Styles';
 import CheckoutWizard from '../components/checkoutWizard';
+import { useSnackbar } from 'notistack';
+import { getError } from '../utils/error';
+import Cookies from 'js-cookie';
 
 function PlaceOrder() {
+  const { closeSnackbar, enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
   const {
+    userInfo,
     cart: { cartItems, shippingAddress, paymentMethod },
   } = state;
 
@@ -39,7 +42,10 @@ function PlaceOrder() {
     if (!paymentMethod) {
       router.push('/payment');
     }
-  }, []);
+    if (cartItems.length === 0) {
+      router.push('/cart');
+    }
+  }, [paymentMethod, cartItems]);
 
   const round2 = (number) => Math.round(number * 100 + Number.EPSILON) / 100;
   const itemsPrice = round2(
@@ -48,6 +54,38 @@ function PlaceOrder() {
   const shippingPrice = round2(itemsPrice > 200 ? 0 : 15);
   const taxPrice = round2(itemsPrice * 0.15);
   const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
+  const [loading, setLoading] = useState(false);
+
+  const placeOrderHandler = async () => {
+    closeSnackbar();
+    try {
+      setLoading(true);
+      const { data } = await axios.post(
+        '/api/orders',
+        {
+          orderItems: cartItems,
+          shippingAddress,
+          paymentMethod,
+          itemsPrice,
+          shippingPrice,
+          taxPrice,
+          totalPrice,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+      dispatch({ type: 'CART_CLEAR' });
+      Cookies.remove('cartItems');
+      setLoading(false);
+      router.push(`/order/${data._id}`);
+    } catch (error) {
+      setLoading(false);
+      enqueueSnackbar(getError(error), { variant: 'error' });
+    }
+  };
 
   return (
     <Layout title="Place Order">
@@ -193,10 +231,20 @@ function PlaceOrder() {
               </ListItem>
 
               <ListItem>
-                <Button variant="contained" color="primary" fullWidth>
+                <Button
+                  onClick={placeOrderHandler}
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
                   Place Order
                 </Button>
               </ListItem>
+              {loading && (
+                <ListItem>
+                  <CircularProgress />
+                </ListItem>
+              )}
             </List>
           </Card>
         </Grid>

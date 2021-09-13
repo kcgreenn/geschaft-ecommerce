@@ -1,6 +1,5 @@
 import {
   Button,
-  Link,
   List,
   ListItem,
   TextField,
@@ -9,7 +8,6 @@ import {
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
 import useStyles from '../utils/Styles';
-import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
@@ -140,8 +138,6 @@ export default function Shipping() {
               defaultValue=""
               rules={{
                 required: true,
-                minLength: 5,
-                maxLength: 5,
               }}
               render={({ field }) => (
                 <TextField
@@ -149,15 +145,10 @@ export default function Shipping() {
                   fullWidth
                   id="postalCode"
                   label="Postal Code"
-                  inputProps={{ type: 'number' }}
+                  inputProps={{ type: 'text' }}
                   error={Boolean(errors.postalCode)}
                   helperText={
-                    errors.postalCode
-                      ? errors.postalCode.type === 'minLength' ||
-                        errors.postalCode.type === 'maxLength'
-                        ? 'Postal Code must be a 5 digit number.'
-                        : 'Postal Code is required'
-                      : ''
+                    errors.postalCode ? 'Postal Code is required' : ''
                   }
                   {...field}
                 ></TextField>

@@ -22,7 +22,7 @@ import { Store } from '../utils/Store';
 import NextLink from 'next/link';
 import axios from 'axios';
 import Image from 'next/Image';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 function CartScreen() {
   const { state, dispatch } = useContext(Store);
