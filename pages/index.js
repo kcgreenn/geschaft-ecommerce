@@ -16,8 +16,10 @@ import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Product from '../Models/Product';
 import { Store } from '../utils/Store';
+import useStyles from '../utils/Styles';
 
 export default function Home(props) {
+  const classes = useStyles();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { products } = props;
@@ -48,12 +50,13 @@ export default function Home(props) {
                 <NextLink href={`/product/${product.slug}`} passHref>
                   <CardActionArea>
                     <CardMedia
+                      className={classes.dailyImg}
                       component="img"
-                      image={product.image}
-                      title={product.name}
+                      image={product.imageURL}
+                      title={product.title}
                     ></CardMedia>
                     <CardContent>
-                      <Typography>{product.name}</Typography>
+                      <Typography>{product.title.substring(0, 40)}</Typography>
                     </CardContent>
                   </CardActionArea>
                 </NextLink>
@@ -78,7 +81,7 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
   await db.connect();
-  const products = await Product.find({}).lean();
+  const products = await Product.aggregate([{ $sample: { size: 6 } }]);
   db.disconnect();
   return {
     props: {

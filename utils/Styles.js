@@ -54,6 +54,9 @@ const useStyles = makeStyles({
   fullWidth: {
     width: '100%',
   },
+  dailyImg: {
+    height: '256px',
+  },
 });
 
 export default useStyles;
