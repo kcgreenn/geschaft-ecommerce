@@ -20,7 +20,7 @@ import dynamic from 'next/dynamic';
 import { Store } from '../utils/Store';
 import NextLink from 'next/link';
 import axios from 'axios';
-import Image from 'next/Image';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import useStyles from '../utils/Styles';
 import CheckoutWizard from '../components/checkoutWizard';
