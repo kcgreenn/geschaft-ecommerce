@@ -81,8 +81,8 @@ function CartScreen() {
                         <NextLink href={`/product/${item.slug}`} passHref>
                           <Link>
                             <Image
-                              src={item.image}
-                              alt={item.name}
+                              src={item.imageURL}
+                              alt={item.title}
                               width={50}
                               height={50}
                             ></Image>
@@ -92,7 +92,7 @@ function CartScreen() {
                       <TableCell>
                         <NextLink href={`/product/${item.slug}`} passHref>
                           <Link>
-                            <Typography>{item.name}</Typography>
+                            <Typography>{item.title}</Typography>
                           </Link>
                         </NextLink>
                       </TableCell>

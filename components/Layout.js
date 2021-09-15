@@ -16,7 +16,14 @@ import {
   NoSsr,
   Menu,
   MenuItem,
+  TextField,
+  InputBase,
+  IconButton,
+  Paper,
+  InputAdornment,
+  Input,
 } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import useStyles from '../utils/Styles';
 import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
@@ -42,7 +49,7 @@ export default function Layout({ children, title, description }) {
     palette: {
       type: darkMode ? 'dark' : 'light',
       primary: {
-        main: '#f0c000',
+        main: '#f09000',
       },
       secondary: {
         main: '#208080',
@@ -89,6 +96,18 @@ export default function Layout({ children, title, description }) {
                   <Typography className={classes.brand}>pawmart</Typography>
                 </Link>
               </NextLink>
+              <Paper className={classes.searchBar}>
+                <TextField
+                  variant="filled"
+                  color="secondary"
+                  fullWidth
+                  id="search"
+                  label="Search"
+                  inputProps={{
+                    type: 'text',
+                  }}
+                ></TextField>
+              </Paper>
               <div className={classes.grow}>
                 <NoSsr>
                   <Switch
@@ -143,7 +162,7 @@ export default function Layout({ children, title, description }) {
         </AppBar>
         <Container className={classes.main}>{children}</Container>
         <footer className={classes.footer}>
-          <Typography>All rights reserved SprawlMart</Typography>
+          <Typography>All rights reserved PawMart</Typography>
         </footer>
       </ThemeProvider>
     </div>

@@ -15,6 +15,8 @@ import {
   Select,
   MenuItem,
   NoSsr,
+  Chip,
+  Paper,
 } from '@material-ui/core';
 import useStyles from '../../utils/Styles';
 import db from '../../utils/db';
@@ -55,8 +57,12 @@ export default function ProductScreen(props) {
     selectedQuantity = quantity;
   };
 
+  const handleCategoryClick = (element) => {
+    router.push(`/categories/${element.target.lastChild.data}`);
+  };
+
   return (
-    <Layout title={product.name} description={product.description}>
+    <Layout title={product.title} description={product.description}>
       <div className={classes.section}>
         <NextLink href="/" passHref>
           <Link>
@@ -67,35 +73,50 @@ export default function ProductScreen(props) {
       <Grid container spacing={1} className={classes.productInfo}>
         <Grid item md={4} xs={12}>
           <Image
-            src={product.image}
-            alt={product.name}
+            src={product.imageURL}
+            alt={product.title}
             width={480}
-            height={480}
+            height={640}
             layout="responsive"
           ></Image>
         </Grid>
         <Grid item md={4} xs={12}>
-          <List>
-            <ListItem>
-              <Typography component="h1" variant="h1">
-                {product.name}
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography>Category:{product.category}</Typography>
-            </ListItem>
-            <ListItem>
-              <Typography>Brand:{product.brand}</Typography>
-            </ListItem>
-            <ListItem>
-              <Typography>
-                Rating: {product.rating} stars ({product.numReviews} reviews)
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography>Description: {product.description}</Typography>
-            </ListItem>
-          </List>
+          <Paper>
+            <List>
+              <ListItem>
+                <Typography component="h1" variant="h1">
+                  {product.title}
+                </Typography>
+              </ListItem>
+              <ListItem className={classes.prodCatSection}>
+                <Typography>
+                  <strong>Categories:</strong>
+                </Typography>
+                {product.category.map((category) => (
+                  <Chip
+                    label={category}
+                    onClick={(element) => handleCategoryClick(element)}
+                  />
+                ))}
+              </ListItem>
+              <ListItem>
+                <Typography>
+                  <strong>Brand:&nbsp;</strong>
+                  {product.brand}
+                </Typography>
+              </ListItem>
+              <ListItem>
+                <Typography>
+                  <strong>Rating:</strong> {product.rating} stars ({23} reviews)
+                </Typography>
+              </ListItem>
+              <ListItem>
+                <Typography>
+                  <strong>Description:</strong> {product.description}
+                </Typography>
+              </ListItem>
+            </List>
+          </Paper>
         </Grid>
         <Grid item md={4} xs={12}>
           <Card>

@@ -51,7 +51,7 @@ function PlaceOrder() {
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
   );
-  const shippingPrice = round2(itemsPrice > 200 ? 0 : 15);
+  const shippingPrice = round2(itemsPrice > 200 ? 0 : 5);
   const taxPrice = round2(itemsPrice * 0.15);
   const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
   const [loading, setLoading] = useState(false);
@@ -147,8 +147,8 @@ function PlaceOrder() {
                             <NextLink href={`/product/${item.slug}`} passHref>
                               <Link>
                                 <Image
-                                  src={item.image}
-                                  alt={item.name}
+                                  src={item.imageURL}
+                                  alt={item.title}
                                   width={50}
                                   height={50}
                                 ></Image>
@@ -158,7 +158,7 @@ function PlaceOrder() {
                           <TableCell>
                             <NextLink href={`/product/${item.slug}`} passHref>
                               <Link>
-                                <Typography>{item.name}</Typography>
+                                <Typography>{item.title}</Typography>
                               </Link>
                             </NextLink>
                           </TableCell>

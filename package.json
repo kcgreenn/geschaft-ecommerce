@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "@paypal/react-paypal-js": "^7.3.3",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
@@ -21,7 +23,8 @@
     "notistack": "^1.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hook-form": "^7.14.2"
+    "react-hook-form": "^7.14.2",
+    "swr": "^1.0.1"
   },
   "devDependencies": {
     "eslint": "7.32.0",
