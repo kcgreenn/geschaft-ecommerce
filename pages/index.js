@@ -62,7 +62,7 @@ export default function Home(props) {
           </Typography>
         </Grid>
         {products.map((product) => (
-          <Grid item md={4} key={product._id}>
+          <Grid item xs={12} md={4} key={product._id}>
             <Card>
               <NextLink href={`/product/${product.slug}`} passHref>
                 <CardActionArea>

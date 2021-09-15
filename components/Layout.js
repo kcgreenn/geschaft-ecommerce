@@ -96,18 +96,7 @@ export default function Layout({ children, title, description }) {
                   <Typography className={classes.brand}>pawmart</Typography>
                 </Link>
               </NextLink>
-              <Paper className={classes.searchBar}>
-                <TextField
-                  variant="filled"
-                  color="secondary"
-                  fullWidth
-                  id="search"
-                  label="Search"
-                  inputProps={{
-                    type: 'text',
-                  }}
-                ></TextField>
-              </Paper>
+
               <div className={classes.grow}>
                 <NoSsr>
                   <Switch

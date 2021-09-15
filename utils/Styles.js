@@ -86,6 +86,8 @@ const useStyles = makeStyles({
   saleJumbotron: {
     marginTop: '64px',
     marginBottom: '64px',
+    justifyContent: 'center',
+    overflow: 'hidden',
   },
   catSection: {
     justifyContent: 'space-between',
@@ -100,8 +102,8 @@ const useStyles = makeStyles({
     minHeight: '80vh',
   },
   catAvatar: {
-    height: 84,
-    width: 84,
+    height: 128,
+    width: 128,
     marginBottom: 24,
   },
   prodDescItem: {
