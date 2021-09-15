@@ -124,19 +124,29 @@ export default function ProductScreen(props) {
                   <strong>Rating:</strong> {product.rating} stars ({23} reviews)
                 </Typography>
               </ListItem>
-              <ListItem>
-                <Collapse in={showMore}>
+              <ListItem className={classes.prodDescLI}>
+                <Collapse in={showMore} collapsedSize={212}>
                   <Typography className={classes.prodDescItem}>
                     <strong>Description:</strong> {product.description}
                   </Typography>
                 </Collapse>
               </ListItem>
-              <Divider />
-              <ListItem className={classes.readMoreBtn}>
-                <Button size="small" color="primary" onClick={handleShowMore}>
-                  Read More
-                </Button>
-              </ListItem>
+              {product.description.length > 432 ? (
+                <div>
+                  <Divider />
+                  <ListItem className={classes.readMoreBtn}>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={handleShowMore}
+                    >
+                      Read More
+                    </Button>
+                  </ListItem>
+                </div>
+              ) : (
+                ''
+              )}
             </List>
           </Paper>
         </Grid>

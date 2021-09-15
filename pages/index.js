@@ -7,6 +7,7 @@ import {
   CardActions,
   Typography,
   Button,
+  useMediaQuery,
 } from '@material-ui/core';
 import Layout from '../components/Layout';
 import NextLink from 'next/link';
@@ -40,6 +41,8 @@ export default function Home(props) {
     router.push('/cart');
   };
 
+  const matches = useMediaQuery('(min-width:600px)');
+
   return (
     <Layout>
       <Grid container spacing={3} className={classes.saleJumbotron}>
@@ -47,16 +50,24 @@ export default function Home(props) {
           <Card>
             <NextLink href="/categories/Food" passHref>
               <CardActionArea>
-                <CardMedia
-                  component="img"
-                  image="/images/saleJumbotron.jpg"
-                  title="Buy One Get One Free"
-                ></CardMedia>
+                {matches ? (
+                  <CardMedia
+                    component="img"
+                    image="/images/saleJumbotron.jpg"
+                    title="Buy One Get One Free"
+                  ></CardMedia>
+                ) : (
+                  <CardMedia
+                    component="img"
+                    image="/images/saleJumbotronMobile.jpg"
+                    title="Buy One Get One Free"
+                  ></CardMedia>
+                )}
               </CardActionArea>
             </NextLink>
           </Card>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.ddSection}>
           <Typography variant="h1" component="h1">
             Daily Deals
           </Typography>

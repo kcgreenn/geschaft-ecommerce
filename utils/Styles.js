@@ -91,6 +91,8 @@ const useStyles = makeStyles({
   },
   catSection: {
     justifyContent: 'space-between',
+    borderTop: '1px solid #aaa',
+    marginTop: '24px',
   },
   catContent: {
     display: 'flex',
@@ -102,12 +104,12 @@ const useStyles = makeStyles({
     minHeight: '80vh',
   },
   catAvatar: {
-    height: 128,
-    width: 128,
+    height: '128px',
+    minWidth: 128,
+    maxWidth: '75%',
     marginBottom: 24,
   },
   prodDescItem: {
-    height: '148px',
     overflow: 'hidden',
   },
   readMoreBtn: {
@@ -115,6 +117,11 @@ const useStyles = makeStyles({
     margin: 0,
     padding: 0,
   },
+  ddSection: {
+    borderTop: '1px solid #aaa',
+    marginTop: '24px',
+  },
+  prodDescLI: {},
 });
 
 export default useStyles;

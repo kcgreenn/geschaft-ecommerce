@@ -54,14 +54,14 @@ export default function ShopByCategory() {
     },
   ];
   return (
-    <Grid container spacing={3} className={classes.catSection}>
+    <Grid container spacing={6} className={classes.catSection}>
       <Grid item xs={12}>
         <Typography component="h1" variant="h1">
           Shop By Category
         </Typography>
       </Grid>
       {categories.map((category) => (
-        <Grid item xs={6} md={1}>
+        <Grid item xs={6} md={2}>
           <NextLink href={`/categories${category.link}`} passHref>
             <Link color="secondary" className={classes.catContent}>
               <Avatar
