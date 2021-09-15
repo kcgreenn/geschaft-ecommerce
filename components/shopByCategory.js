@@ -30,14 +30,18 @@ export default function ShopByCategory() {
     {
       name: 'Reptiles',
       image: '/images/reptile1small.jpg',
-      link: '/Reptiles',
+      link: '/Reptiles and Amphibians',
     },
     {
       name: 'Collars',
       image: '/images/collar1small.jpg',
       link: '/Collars',
     },
-    { name: 'Fish', image: '/images/fish1small.jpg', link: '/Fish' },
+    {
+      name: 'Fish',
+      image: '/images/fish1small.jpg',
+      link: '/Fish and Aquatic Pets',
+    },
     {
       name: 'Food',
       image: '/images/food1small.jpg',
@@ -46,7 +50,7 @@ export default function ShopByCategory() {
     {
       name: 'Behavior',
       image: '/images/petBehaviorCenter1small.jpg',
-      link: '/Behavior',
+      link: '/Pet Behavior Center',
     },
   ];
   return (

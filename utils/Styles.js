@@ -104,6 +104,15 @@ const useStyles = makeStyles({
     width: 84,
     marginBottom: 24,
   },
+  prodDescItem: {
+    height: '148px',
+    overflow: 'hidden',
+  },
+  readMoreBtn: {
+    justifyContent: 'center',
+    margin: 0,
+    padding: 0,
+  },
 });
 
 export default useStyles;

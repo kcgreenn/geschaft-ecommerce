@@ -14,9 +14,10 @@ import {
   Button,
   Select,
   MenuItem,
-  NoSsr,
   Chip,
   Paper,
+  Collapse,
+  Divider,
 } from '@material-ui/core';
 import useStyles from '../../utils/Styles';
 import db from '../../utils/db';
@@ -29,6 +30,7 @@ export default function ProductScreen(props) {
   const { state, dispatch } = useContext(Store);
   const { product } = props;
   const classes = useStyles();
+  const [showMore, setShowMore] = React.useState(false);
   let selectedQuantity = 1;
 
   if (!product) {
@@ -59,6 +61,13 @@ export default function ProductScreen(props) {
 
   const handleCategoryClick = (element) => {
     router.push(`/categories/${element.target.lastChild.data}`);
+  };
+  const handleBrandClick = (element) => {
+    router.push(`/brands/${element.target.lastChild.data}`);
+  };
+
+  const handleShowMore = () => {
+    setShowMore((prev) => !prev);
   };
 
   return (
@@ -102,8 +111,13 @@ export default function ProductScreen(props) {
               <ListItem>
                 <Typography>
                   <strong>Brand:&nbsp;</strong>
-                  {product.brand}
                 </Typography>
+                <Chip
+                  label={product.brand}
+                  onClick={(element) => handleBrandClick(element)}
+                >
+                  {product.brand}
+                </Chip>
               </ListItem>
               <ListItem>
                 <Typography>
@@ -111,9 +125,17 @@ export default function ProductScreen(props) {
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography>
-                  <strong>Description:</strong> {product.description}
-                </Typography>
+                <Collapse in={showMore}>
+                  <Typography className={classes.prodDescItem}>
+                    <strong>Description:</strong> {product.description}
+                  </Typography>
+                </Collapse>
+              </ListItem>
+              <Divider />
+              <ListItem className={classes.readMoreBtn}>
+                <Button size="small" color="primary" onClick={handleShowMore}>
+                  Read More
+                </Button>
               </ListItem>
             </List>
           </Paper>

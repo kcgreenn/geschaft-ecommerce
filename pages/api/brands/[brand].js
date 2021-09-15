@@ -6,8 +6,8 @@ const handler = nc();
 
 handler.get(async (req, res) => {
   await db.connect();
-
-  const products = await Product.find({ category: req.query.category }, null, {
+  console.log(req.query);
+  const products = await Product.find({ brand: req.query.brand }, null, {
     skip: req.query.skip,
     limit: 15,
   });
