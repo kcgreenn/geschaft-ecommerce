@@ -61,7 +61,7 @@ export default function ShopByCategory() {
         </Typography>
       </Grid>
       {categories.map((category) => (
-        <Grid item xs={12} md={1}>
+        <Grid item xs={6} md={1}>
           <NextLink href={`/categories${category.link}`} passHref>
             <Link color="secondary" className={classes.catContent}>
               <Avatar

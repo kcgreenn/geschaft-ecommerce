@@ -32,9 +32,7 @@ const Category = () => {
   };
 
   const getCount = async () => {
-    const { data } = await axios.get(
-      `http://localhost:3000/api/categories/${category}/count`
-    );
+    const { data } = await axios.get(`/api/categories/${category}/count`);
     setCatCount(data.count);
   };
 

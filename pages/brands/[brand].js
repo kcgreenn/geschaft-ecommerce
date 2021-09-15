@@ -20,9 +20,7 @@ export default function Brand() {
   };
 
   const getCount = async () => {
-    const { data } = await axios.get(
-      `http://localhost:3000/api/brands/${brand}/count`
-    );
+    const { data } = await axios.get(`/api/brands/${brand}/count`);
     setBrandCount(data.count);
   };
 
