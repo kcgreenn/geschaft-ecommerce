@@ -24,7 +24,7 @@ const Category = () => {
   const router = useRouter();
   const { category } = router.query;
   const [pageIndex, setPageIndex] = useState(0);
-  const [catCount, setCatCount] = useState(1000);
+  const [catCount, setCatCount] = useState('');
 
   const handlePaginate = (event, value) => {
     setPageIndex(value);
@@ -42,11 +42,8 @@ const Category = () => {
 
   return (
     <Layout>
-      <Typography variant="h1" component="h1">
-        <strong>{category}:</strong>&nbsp;{catCount}&nbsp;Results
-      </Typography>
       <div className={classes.pagiSection}>
-        <Page index={pageIndex} category={category} />
+        <Page index={pageIndex} category={category} totalResults={catCount} />
         <div style={{ display: 'none' }}>
           <Page index={pageIndex + 1} />
         </div>
@@ -57,7 +54,7 @@ const Category = () => {
             ? Math.round(catCount / 15) - 1
             : Math.round(catCount / 15)
         }
-        color="secondary"
+        color="primary"
         page={pageIndex ? pageIndex : 1}
         variant="outlined"
         className={classes.pagination}

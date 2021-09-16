@@ -18,6 +18,8 @@ import useStyles from '../utils/Styles';
 export default function BrandPage({ index, brand }) {
   const classes = useStyles();
 
+  const round2 = (number) => Math.round(number * 100 + Number.EPSILON) / 100;
+
   const { data, error } = useSWR(`/api/brands/${brand}/${index}`, axios.get);
   if (error) return <div></div>;
   if (!data) return <CircularProgress />;
@@ -41,7 +43,7 @@ export default function BrandPage({ index, brand }) {
               </CardActionArea>
             </NextLink>
             <CardActions>
-              <Typography>${product.price}</Typography>
+              <Typography>${round2(product.price).toFixed(2)}</Typography>
               <Button
                 size="small"
                 color="primary"

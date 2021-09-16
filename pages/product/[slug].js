@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Image from 'next/image';
 import Layout from '../../components/Layout';
-import data from '../../utils/data';
 import NextLink from 'next/link';
 import axios from 'axios';
 import {
@@ -24,11 +23,15 @@ import db from '../../utils/db';
 import Product from '../../Models/Product';
 import { Store } from '../../utils/Store';
 import { useRouter } from 'next/router';
+import AlsoBought from '../../components/alsoBought';
+import Reviews from '../../components/Reviews';
+import Review from '../../Models/Review';
 
 export default function ProductScreen(props) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
-  const { product } = props;
+  const { product, alsoBought, reviews } = props;
+
   const classes = useStyles();
   const [showMore, setShowMore] = React.useState(false);
   let selectedQuantity = 1;
@@ -36,6 +39,8 @@ export default function ProductScreen(props) {
   if (!product) {
     return <div>Product Not Found</div>;
   }
+
+  useEffect(() => {}, [product]);
 
   const addToCartHandler = async () => {
     const { data } = await axios.get(`/api/products/${product._id}`);
@@ -85,7 +90,7 @@ export default function ProductScreen(props) {
             src={product.imageURL}
             alt={product.title}
             width={480}
-            height={640}
+            height={480}
             layout="responsive"
           ></Image>
         </Grid>
@@ -159,7 +164,10 @@ export default function ProductScreen(props) {
                     <Typography>Price: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography color="primary"> ${product.price}</Typography>
+                    <Typography color="primary">
+                      {' '}
+                      ${product.price.toFixed(2)}
+                    </Typography>
                   </Grid>
                 </Grid>
               </ListItem>
@@ -209,11 +217,8 @@ export default function ProductScreen(props) {
             </List>
           </Card>
         </Grid>
-      </Grid>
-      <Grid container className={classes.relatedItems}>
-        <Typography variant="h1" component="h1">
-          Similar Items
-        </Typography>
+        <AlsoBought alsoBought={alsoBought} />
+        <Reviews reviews={reviews} />
       </Grid>
     </Layout>
   );
@@ -224,10 +229,17 @@ export async function getServerSideProps(context) {
   const { slug } = params;
   await db.connect();
   const product = await Product.findOne({ slug }).lean();
+  const alsoBought = await Product.find({ category: product.category }, null, {
+    limit: 3,
+  });
+  const reviews = await Review.find({ asin: product.asin }, null, { limit: 3 });
   db.disconnect();
+
   return {
     props: {
       product: db.convertDocToObj(product),
+      alsoBought: JSON.parse(JSON.stringify(alsoBought)),
+      reviews: JSON.parse(JSON.stringify(reviews)),
     },
   };
 }

@@ -5,7 +5,7 @@ import db from '../../../../utils/db';
 const handler = nc();
 
 handler.get(async (req, res) => {
-  const limit = 15;
+  const limit = 12;
   await db.connect();
 
   const products = await Product.find({ category: req.query.category }, null, {

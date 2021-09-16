@@ -32,11 +32,11 @@ export default function ShopByCategory() {
       image: '/images/reptile1small.jpg',
       link: '/Reptiles and Amphibians',
     },
-    {
-      name: 'Collars',
-      image: '/images/collar1small.jpg',
-      link: '/Collars',
-    },
+    // {
+    //   name: 'Collars',
+    //   image: '/images/collar1small.jpg',
+    //   link: '/Collars',
+    // },
     {
       name: 'Fish',
       image: '/images/fish1small.jpg',
@@ -47,21 +47,26 @@ export default function ShopByCategory() {
       image: '/images/food1small.jpg',
       link: '/Food',
     },
+    // {
+    //   name: 'Behavior',
+    //   image: '/images/petBehaviorCenter1small.jpg',
+    //   link: '/Pet Behavior Center',
+    // },
     {
-      name: 'Behavior',
-      image: '/images/petBehaviorCenter1small.jpg',
-      link: '/Pet Behavior Center',
+      name: 'Health',
+      image: '/images/health1small.jpg',
+      link: '/Health',
     },
   ];
   return (
-    <Grid container spacing={6} className={classes.catSection}>
+    <Grid container className={classes.catSection}>
       <Grid item xs={12}>
         <Typography component="h1" variant="h1">
           Shop By Category
         </Typography>
       </Grid>
       {categories.map((category) => (
-        <Grid item xs={6} md={2}>
+        <Grid item xs={6} md={3}>
           <NextLink href={`/categories${category.link}`} passHref>
             <Link color="secondary" className={classes.catContent}>
               <Avatar
@@ -69,7 +74,9 @@ export default function ShopByCategory() {
                 alt={category.name}
                 className={classes.catAvatar}
               />
-              <Typography>{category.name}</Typography>
+              <Typography variant="h2" component="h2">
+                {category.name}
+              </Typography>
             </Link>
           </NextLink>
         </Grid>

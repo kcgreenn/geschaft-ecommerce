@@ -23,6 +23,7 @@ import {
   InputAdornment,
   Input,
 } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from '../utils/Styles';
 import { Store } from '../utils/Store';
@@ -80,6 +81,10 @@ export default function Layout({ children, title, description }) {
     router.push('/');
   };
 
+  const handleProfileClick = () => {
+    router.push('/profile');
+  };
+
   return (
     <div>
       <Head>
@@ -135,8 +140,7 @@ export default function Layout({ children, title, description }) {
                       open={Boolean(anchorEl)}
                       onClose={handleCloseMenu}
                     >
-                      <MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
-                      <MenuItem onClick={handleCloseMenu}>My Account</MenuItem>
+                      <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
                       <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
                     </Menu>
                   </>

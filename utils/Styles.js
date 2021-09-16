@@ -78,13 +78,21 @@ const useStyles = makeStyles({
   },
   catRoot: {
     flexGrow: 1,
-    margin: '36px 0',
+  },
+  loader: {
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   cardTitle: {
     minHeight: 48,
+    maxHeight: 72,
+    overflow: 'hidden',
   },
   saleJumbotron: {
-    marginTop: '64px',
+    marginTop: '5vh',
     marginBottom: '64px',
     justifyContent: 'center',
     overflow: 'hidden',
@@ -99,17 +107,23 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: '18px',
   },
   pagiSection: {
     minHeight: '80vh',
   },
   catAvatar: {
-    height: '128px',
-    minWidth: 128,
-    maxWidth: '75%',
-    marginBottom: 24,
+    height: 'auto',
+    width: '128px',
+  },
+  pastOrderBtn: {
+    marginTop: 48,
+  },
+  strikeThrough: {
+    textDecoration: 'line-through',
   },
   prodDescItem: {
+    maxHeight: '196px',
     overflow: 'hidden',
   },
   readMoreBtn: {
@@ -120,6 +134,13 @@ const useStyles = makeStyles({
   ddSection: {
     borderTop: '1px solid #aaa',
     marginTop: '24px',
+  },
+  alsoBoughtSection: {
+    marginTop: '24px',
+  },
+  spaceContent: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   prodDescLI: {},
 });

@@ -93,7 +93,12 @@ export default function Home(props) {
                 </CardActionArea>
               </NextLink>
               <CardActions>
-                <Typography>${product.price}</Typography>
+                <Typography>
+                  <emphasis className={classes.strikeThrough}>
+                    ${(product.price * 1.2).toFixed(2)}
+                  </emphasis>{' '}
+                  <strong>${product.price.toFixed(2)}</strong>
+                </Typography>
                 <Button
                   size="small"
                   color="primary"
