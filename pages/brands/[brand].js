@@ -13,7 +13,7 @@ export default function Brand() {
   const { brand } = router.query;
   const [pageIndex, setPageIndex] = useState(0);
   const [brandCount, setBrandCount] = useState(0);
-  console.log('brand page');
+
   const handlePaginate = (event, value) => {
     setPageIndex(value);
     window.scrollTo(0, 0);
@@ -30,12 +30,8 @@ export default function Brand() {
 
   return (
     <Layout>
-      <Typography variant="h1" component="h1">
-        <strong>{brand}:</strong>&nbsp;{brandCount == 0 ? '...' : brandCount}
-        &nbsp;Results
-      </Typography>
       <div className={classes.pagiSection}>
-        <BrandPage index={pageIndex} brand={brand} />
+        <BrandPage index={pageIndex} brand={brand} totalResults={brandCount} />
         <div style={{ display: 'none' }}>
           <BrandPage index={pageIndex + 1} />
         </div>

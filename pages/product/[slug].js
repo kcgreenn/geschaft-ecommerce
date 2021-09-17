@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Layout from '../../components/Layout';
 import NextLink from 'next/link';
 import axios from 'axios';
+import Rating from '@material-ui/lab/Rating';
 import {
   Grid,
   Link,
@@ -16,7 +17,9 @@ import {
   Chip,
   Paper,
   Collapse,
+  Modal,
   Divider,
+  useMediaQuery,
 } from '@material-ui/core';
 import useStyles from '../../utils/Styles';
 import db from '../../utils/db';
@@ -31,6 +34,8 @@ export default function ProductScreen(props) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { product, alsoBought, reviews } = props;
+  const [open, setOpen] = useState(false);
+  const matches = useMediaQuery('(min-width:600px)');
 
   const classes = useStyles();
   const [showMore, setShowMore] = React.useState(false);
@@ -72,8 +77,22 @@ export default function ProductScreen(props) {
   };
 
   const handleShowMore = () => {
-    setShowMore((prev) => !prev);
+    setShowMore((showMore) => !showMore);
   };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const body = (
+    <Card className={classes.modalContent}>
+      <Typography variant="h2" component="h2">
+        Description:
+      </Typography>
+      <Typography>{product.description}</Typography>
+    </Card>
+  );
 
   return (
     <Layout title={product.title} description={product.description}>
@@ -126,31 +145,71 @@ export default function ProductScreen(props) {
               </ListItem>
               <ListItem>
                 <Typography>
-                  <strong>Rating:</strong> {product.rating} stars ({23} reviews)
+                  <strong>Rating:</strong>{' '}
+                  <Rating name="read-only" readOnly value={product.rating} />
                 </Typography>
               </ListItem>
-              <ListItem className={classes.prodDescLI}>
-                <Collapse in={showMore} collapsedSize={212}>
+
+              {product.description.length > 432 ? (
+                <div>
+                  {matches ? (
+                    <div>
+                      <ListItem>
+                        <Typography className={classes.prodDescItem}>
+                          <strong>Description:</strong> {product.description}
+                        </Typography>
+                      </ListItem>
+                      <Divider />
+                      <ListItem className={classes.btnCntnr}>
+                        <Button
+                          type="button"
+                          variant="outlined"
+                          color="primary"
+                          onClick={handleOpen}
+                        >
+                          Read More
+                        </Button>
+                      </ListItem>
+                      <Modal
+                        open={open}
+                        className={classes.modal}
+                        onClose={handleClose}
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                      >
+                        {body}
+                      </Modal>
+                    </div>
+                  ) : (
+                    <div>
+                      <ListItem>
+                        <Collapse in={showMore} collapsedSize={100}>
+                          <Typography className={classes.prodDescItemMobile}>
+                            <strong>Description:</strong> {product.description}
+                          </Typography>
+                        </Collapse>
+                      </ListItem>
+                      <Divider />
+                      <ListItem className={classes.btnCntnr}>
+                        <Button
+                          type="button"
+                          onClick={handleShowMore}
+                          variant="outlined"
+                          color="primary"
+                          className={classes.readMoreBtn}
+                        >
+                          Read More
+                        </Button>
+                      </ListItem>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <ListItem>
                   <Typography className={classes.prodDescItem}>
                     <strong>Description:</strong> {product.description}
                   </Typography>
-                </Collapse>
-              </ListItem>
-              {product.description.length > 432 ? (
-                <div>
-                  <Divider />
-                  <ListItem className={classes.readMoreBtn}>
-                    <Button
-                      size="small"
-                      color="primary"
-                      onClick={handleShowMore}
-                    >
-                      Read More
-                    </Button>
-                  </ListItem>
-                </div>
-              ) : (
-                ''
+                </ListItem>
               )}
             </List>
           </Paper>
@@ -232,7 +291,7 @@ export async function getServerSideProps(context) {
   const alsoBought = await Product.find({ category: product.category }, null, {
     limit: 3,
   });
-  const reviews = await Review.find({ asin: product.asin }, null, { limit: 3 });
+  const reviews = await Review.find({ asin: product.asin });
   db.disconnect();
 
   return {

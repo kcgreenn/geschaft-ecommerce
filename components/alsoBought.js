@@ -9,6 +9,7 @@ import {
   Grid,
   Typography,
 } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 import NextLink from 'next/link';
 import useStyles from '../utils/Styles';
 
@@ -43,11 +44,7 @@ export default function AlsoBought({ alsoBought }) {
             </NextLink>
             <CardActions className={classes.spaceContent}>
               <Typography>${product.price.toFixed(2)}</Typography>
-              <Typography>
-                {product.rating > 1
-                  ? product.rating + ' Stars'
-                  : product.rating + ' Star'}{' '}
-              </Typography>
+              <Rating name="read-only" readOnly value={product.rating} />
             </CardActions>
           </Card>
         </Grid>

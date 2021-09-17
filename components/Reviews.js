@@ -9,12 +9,19 @@ import {
   ListItemText,
   Typography,
 } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useStyles from '../utils/Styles';
 
 export default function Reviews({ reviews }) {
   const classes = useStyles();
+  if (reviews.length == 0)
+    return (
+      <Typography variant="h2" component="h2">
+        No Reviews
+      </Typography>
+    );
   return (
     <Grid container className={classes.alsoBoughtSection}>
       <Grid item xs={12}>
@@ -36,7 +43,13 @@ export default function Reviews({ reviews }) {
                   <div className={classes.spaceContent}>
                     {review.summary}{' '}
                     <span sx={{ marginLeft: '100px' }}>
-                      {review.rating + ' Stars'}
+                      {
+                        <Rating
+                          name="read-only"
+                          readOnly
+                          value={review.rating}
+                        />
+                      }
                     </span>
                   </div>
                 }

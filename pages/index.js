@@ -52,12 +52,14 @@ export default function Home(props) {
               <CardActionArea>
                 {matches ? (
                   <CardMedia
+                    key={1}
                     component="img"
                     image="/images/saleJumbotron.jpg"
                     title="Buy One Get One Free"
                   ></CardMedia>
                 ) : (
                   <CardMedia
+                    key={2}
                     component="img"
                     image="/images/saleJumbotronMobile.jpg"
                     title="Buy One Get One Free"

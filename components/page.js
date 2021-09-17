@@ -1,10 +1,12 @@
 import React from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
+import Skeleton from '@material-ui/lab/Skeleton';
 import {
   Button,
   Card,
   CardActionArea,
+  Box,
   CardActions,
   CardContent,
   CardMedia,
@@ -28,8 +30,66 @@ export default function Page({ index, category, totalResults }) {
   if (error) return <div></div>;
   if (!data)
     return (
-      <div className={classes.loader}>
-        <CircularProgress />
+      <div>
+        <Grid container>
+          <Grid item xs={12} md={10}>
+            <Typography variant="h2" component="h2">
+              <Skeleton variant="rect" width="128px" height="12px" />
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={2}>
+            <Typography variant="h2" component="h2">
+              <Skeleton variant="rect" width="128px" height="12px" />
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid container className={classes.placeHolderImages}>
+          <Grid item xs={12} className={classes.cpGrid}>
+            <CircularProgress />
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+            <Skeleton variant="rect" width={320} height={240} />
+            <Box pt={0.5}>
+              <Skeleton width="75%" />
+              <Skeleton width="60%" />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+            <Skeleton variant="rect" width={320} height={240} />
+            <Box pt={0.5}>
+              <Skeleton width="75%" />
+              <Skeleton width="60%" />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+            <Skeleton variant="rect" width={320} height={240} />
+            <Box pt={0.5}>
+              <Skeleton width="75%" />
+              <Skeleton width="60%" />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+            <Skeleton variant="rect" width={320} height={240} />
+            <Box pt={0.5}>
+              <Skeleton width="75%" />
+              <Skeleton width="60%" />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+            <Skeleton variant="rect" width={320} height={240} />
+            <Box pt={0.5}>
+              <Skeleton width="75%" />
+              <Skeleton width="60%" />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+            <Skeleton variant="rect" width={320} height={240} />
+            <Box pt={0.5}>
+              <Skeleton width="75%" />
+              <Skeleton width="60%" />
+            </Box>
+          </Grid>
+        </Grid>
       </div>
     );
 

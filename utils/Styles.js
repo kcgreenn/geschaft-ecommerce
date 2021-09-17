@@ -11,6 +11,20 @@ const useStyles = makeStyles({
       marginLeft: 10,
     },
   },
+  modal: {
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100vw',
+  },
+  modalContent: {
+    minWidth: 240,
+    maxWidth: 480,
+    backgroundColor: '#ccc',
+    boxShadow: '8px 8px 3px #333',
+    padding: 24,
+  },
   navbarButton: {
     color: '#ffffff',
     textTransform: 'initial',
@@ -122,14 +136,37 @@ const useStyles = makeStyles({
   strikeThrough: {
     textDecoration: 'line-through',
   },
-  prodDescItem: {
-    maxHeight: '196px',
+  tableContainer: {
+    minWidth: '340px',
     overflow: 'hidden',
   },
-  readMoreBtn: {
+  prodDescItem: {
+    maxHeight: '96px',
+    overflow: 'hidden',
+  },
+  prodDescItemMobile: {
+    padding: 12,
+  },
+  titleCell: {
+    width: '196px',
+  },
+  placeHolderImages: {
+    marginTop: '10vh',
+  },
+  placeHolderImage: {
+    marginTop: '24px',
+  },
+  cpGrid: {
+    display: 'flex',
     justifyContent: 'center',
-    margin: 0,
-    padding: 0,
+    marginBottom: '24px',
+  },
+  readMoreBtn: {
+    marginTop: 18,
+  },
+  btnCntnr: {
+    display: 'flex',
+    justifyContent: 'center',
   },
   ddSection: {
     borderTop: '1px solid #aaa',

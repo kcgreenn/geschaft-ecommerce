@@ -14,6 +14,7 @@ import {
   TableHead,
   TableRow,
   Typography,
+  useMediaQuery,
 } from '@material-ui/core';
 import React, { useContext } from 'react';
 import Layout from '../components/Layout';
@@ -23,10 +24,13 @@ import NextLink from 'next/link';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import useStyles from '../utils/Styles';
 
 function CartScreen() {
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
+  const classes = useStyles();
+  const matches = useMediaQuery('(min-width:600px)');
   const {
     cart: { cartItems },
   } = state;
@@ -62,13 +66,13 @@ function CartScreen() {
         </div>
       ) : (
         <Grid container spacing={1}>
-          <Grid item md={9} xs={12}>
+          <Grid item md={9} xs={12} className={classes.tableContainer}>
             <TableContainer>
-              <Table>
+              <Table stickyHeader aria-label="Cart Items">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Image</TableCell>
-                    <TableCell>Name</TableCell>
+                    {matches ? <TableCell>Image</TableCell> : ''}
+                    <TableCell style={{ minWidth: '196px' }}>Name</TableCell>
                     <TableCell align="right">Quantity</TableCell>
                     <TableCell align="right">Price</TableCell>
                     <TableCell align="right">Action</TableCell>
@@ -77,19 +81,24 @@ function CartScreen() {
                 <TableBody>
                   {cartItems.map((item) => (
                     <TableRow key={item._id}>
-                      <TableCell>
-                        <NextLink href={`/product/${item.slug}`} passHref>
-                          <Link>
-                            <Image
-                              src={item.imageURL}
-                              alt={item.title}
-                              width={50}
-                              height={50}
-                            ></Image>
-                          </Link>
-                        </NextLink>
-                      </TableCell>
-                      <TableCell>
+                      {matches ? (
+                        <TableCell>
+                          <NextLink href={`/product/${item.slug}`} passHref>
+                            <Link>
+                              <Image
+                                src={item.imageURL}
+                                alt={item.title}
+                                width={50}
+                                height={50}
+                              ></Image>
+                            </Link>
+                          </NextLink>
+                        </TableCell>
+                      ) : (
+                        ''
+                      )}
+
+                      <TableCell style={{ minWidth: '96px' }}>
                         <NextLink href={`/product/${item.slug}`} passHref>
                           <Link>
                             <Typography>{item.title}</Typography>
