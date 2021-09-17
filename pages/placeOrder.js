@@ -39,13 +39,13 @@ function PlaceOrder() {
   } = state;
 
   useEffect(() => {
-    if (!paymentMethod) {
-      router.push('/payment');
-    }
+    // if (!paymentMethod) {
+    //   router.push('/payment');
+    // }
     if (cartItems.length === 0) {
       router.push('/cart');
     }
-  }, [paymentMethod, cartItems]);
+  }, [cartItems]);
 
   const round2 = (number) => Math.round(number * 100 + Number.EPSILON) / 100;
   const itemsPrice = round2(

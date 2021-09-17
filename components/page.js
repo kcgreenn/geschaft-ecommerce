@@ -31,7 +31,7 @@ export default function Page({ index, category, totalResults }) {
   if (!data)
     return (
       <div>
-        <Grid container>
+        <Grid container className={classes.placeHolderImages}>
           <Grid item xs={12} md={10}>
             <Typography variant="h2" component="h2">
               <Skeleton variant="rect" width="128px" height="12px" />
@@ -42,11 +42,7 @@ export default function Page({ index, category, totalResults }) {
               <Skeleton variant="rect" width="128px" height="12px" />
             </Typography>
           </Grid>
-        </Grid>
-        <Grid container className={classes.placeHolderImages}>
-          <Grid item xs={12} className={classes.cpGrid}>
-            <CircularProgress />
-          </Grid>
+
           <Grid item xs={12} md={4} className={classes.placeHolderImage}>
             <Skeleton variant="rect" width={320} height={240} />
             <Box pt={0.5}>
@@ -103,8 +99,9 @@ export default function Page({ index, category, totalResults }) {
         </Grid>
         <Grid item xs={12} md={2}>
           <Typography variant="h2" component="h2">
-            {index == 0 ? 1 : (index - 1) * 12} - {index == 0 ? 12 : index * 12}{' '}
-            of {totalResults} results
+            {totalResults > 1
+              ? totalResults + ' Results'
+              : totalResults + ' Result'}
           </Typography>
         </Grid>
       </Grid>

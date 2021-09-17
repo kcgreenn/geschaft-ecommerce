@@ -80,9 +80,11 @@ export default function Layout({ children, title, description }) {
     Cookies.remove('cartItems');
     router.push('/');
   };
-
-  const handleProfileClick = () => {
-    router.push('/profile');
+  const loginMenuCloseHandler = (e, route) => {
+    setAnchorEl(null);
+    if (route) {
+      router.push(route);
+    }
   };
 
   return (
@@ -140,7 +142,18 @@ export default function Layout({ children, title, description }) {
                       open={Boolean(anchorEl)}
                       onClose={handleCloseMenu}
                     >
-                      <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+                      <MenuItem
+                        onClick={(e) => loginMenuCloseHandler(e, '/profile')}
+                      >
+                        Profile
+                      </MenuItem>
+                      <MenuItem
+                        onClick={(e) =>
+                          loginMenuCloseHandler(e, '/order-history')
+                        }
+                      >
+                        Order History
+                      </MenuItem>
                       <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
                     </Menu>
                   </>

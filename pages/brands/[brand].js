@@ -33,7 +33,11 @@ export default function Brand() {
       <div className={classes.pagiSection}>
         <BrandPage index={pageIndex} brand={brand} totalResults={brandCount} />
         <div style={{ display: 'none' }}>
-          <BrandPage index={pageIndex + 1} />
+          <BrandPage
+            index={pageIndex + 1}
+            brand={brand}
+            totalResults={brandCount}
+          />
         </div>
       </div>
       <Pagination

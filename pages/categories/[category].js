@@ -45,7 +45,11 @@ const Category = () => {
       <div className={classes.pagiSection}>
         <Page index={pageIndex} category={category} totalResults={catCount} />
         <div style={{ display: 'none' }}>
-          <Page index={pageIndex + 1} />
+          <Page
+            index={pageIndex + 1}
+            category={category}
+            totalResults={catCount}
+          />
         </div>
       </div>
       <Pagination

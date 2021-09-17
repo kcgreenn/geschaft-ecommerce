@@ -48,7 +48,7 @@ export default function Home(props) {
       <Grid container spacing={3} className={classes.saleJumbotron}>
         <Grid item xs={12}>
           <Card>
-            <NextLink href="/categories/Food" passHref>
+            <NextLink href="/categories/Treats" passHref>
               <CardActionArea>
                 {matches ? (
                   <CardMedia

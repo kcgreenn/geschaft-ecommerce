@@ -17,6 +17,11 @@ handler.post(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      fullName: user.fullName,
+      address: user.address,
+      postalCode: user.postalCode,
+      city: user.city,
+      country: user.country,
       isAdmin: user.isAdmin,
     });
   } else {

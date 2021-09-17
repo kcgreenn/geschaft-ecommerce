@@ -13,6 +13,7 @@ import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
 import CheckoutWizard from '../components/checkoutWizard';
+import axios from 'axios';
 
 export default function Shipping() {
   const {
@@ -40,18 +41,34 @@ export default function Shipping() {
     setValue('country', shippingAddress.country);
   }, []);
 
+  const postShippingAddress = async (shipAddr) => {
+    const { data } = await axios.put('/api/users/shipping', {
+      params: { userInfo, shipAddr },
+    });
+  };
+
   const classes = useStyles();
 
   const submitHandler = ({ fullName, address, city, postalCode, country }) => {
+    const shipAddr = { fullName, address, city, postalCode, country };
     dispatch({
       type: 'SAVE_SHIPPING_ADDRESS',
       payload: { fullName, address, city, postalCode, country },
     });
+    if (
+      fullName !== userInfo.fullName ||
+      address !== userInfo.address ||
+      postalCode !== userInfo.postalCode ||
+      city !== userInfo.city ||
+      country !== userInfo.country
+    ) {
+      postShippingAddress(shipAddr);
+    }
     Cookies.set(
       'shippingAddress',
       JSON.stringify({ fullName, address, city, postalCode, country })
     );
-    router.push('/payment');
+    router.push('/placeOrder');
   };
   return (
     <Layout title="Shipping Address">
@@ -69,7 +86,7 @@ export default function Shipping() {
             <Controller
               name="fullName"
               control={control}
-              defaultValue=""
+              defaultValue={userInfo.fullName ? userInfo.fullName : ''}
               rules={{
                 required: true,
               }}
@@ -91,7 +108,7 @@ export default function Shipping() {
             <Controller
               name="address"
               control={control}
-              defaultValue=""
+              defaultValue={userInfo.address ? userInfo.address : ''}
               rules={{
                 required: true,
               }}
@@ -113,7 +130,7 @@ export default function Shipping() {
             <Controller
               name="city"
               control={control}
-              defaultValue=""
+              defaultValue={userInfo.city ? userInfo.city : ''}
               rules={{
                 required: true,
               }}
@@ -135,7 +152,7 @@ export default function Shipping() {
             <Controller
               name="postalCode"
               control={control}
-              defaultValue=""
+              defaultValue={userInfo.postalCode ? userInfo.postalCode : ''}
               rules={{
                 required: true,
               }}
@@ -159,7 +176,7 @@ export default function Shipping() {
             <Controller
               name="country"
               control={control}
-              defaultValue=""
+              defaultValue={userInfo.country ? userInfo.country : ''}
               rules={{
                 required: true,
               }}

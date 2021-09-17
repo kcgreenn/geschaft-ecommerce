@@ -15,19 +15,17 @@ import useStyles from '../utils/Styles';
 export default function ShopByCategory() {
   const classes = useStyles();
   const categories = [
-    { name: 'Dogs', image: '/images/dog1small.jpg', link: '/Dogs' },
-    { name: 'Cats', image: '/images/cat1small.jpg', link: '/Cats' },
+    { key: 1, name: 'Dogs', image: '/images/dog1small.jpg', link: '/Dogs' },
+    { key: 2, name: 'Cats', image: '/images/cat1small.jpg', link: '/Cats' },
     {
+      key: 3,
       name: 'Horses',
       image: '/images/horse1small.jpg',
       link: '/Horses',
     },
+    { key: 4, name: 'Birds', image: '/images/bird1small.jpg', link: '/Birds' },
     {
-      name: 'Birds',
-      image: '/images/bird1small.jpg',
-      link: '/Birds',
-    },
-    {
+      key: 5,
       name: 'Reptiles',
       image: '/images/reptile1small.jpg',
       link: '/Reptiles and Amphibians',
@@ -38,21 +36,19 @@ export default function ShopByCategory() {
     //   link: '/Collars',
     // },
     {
+      key: 6,
       name: 'Fish',
       image: '/images/fish1small.jpg',
       link: '/Fish and Aquatic Pets',
     },
-    {
-      name: 'Food',
-      image: '/images/food1small.jpg',
-      link: '/Food',
-    },
+    { key: 7, name: 'Food', image: '/images/food1small.jpg', link: '/Food' },
     // {
     //   name: 'Behavior',
     //   image: '/images/petBehaviorCenter1small.jpg',
     //   link: '/Pet Behavior Center',
     // },
     {
+      key: 8,
       name: 'Health',
       image: '/images/health1small.jpg',
       link: '/Health',
@@ -66,7 +62,7 @@ export default function ShopByCategory() {
         </Typography>
       </Grid>
       {categories.map((category) => (
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={3} key={category.key}>
           <NextLink href={`/categories${category.link}`} passHref>
             <Link color="secondary" className={classes.catContent}>
               <Avatar

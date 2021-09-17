@@ -142,7 +142,9 @@ function CartScreen() {
                   <Typography variant="h2">
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
                     items) : $
-                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                    {cartItems
+                      .reduce((a, c) => a + c.quantity * c.price, 0)
+                      .toFixed(2)}
                   </Typography>
                 </ListItem>
                 <ListItem>

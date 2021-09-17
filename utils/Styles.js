@@ -151,10 +151,10 @@ const useStyles = makeStyles({
     width: '196px',
   },
   placeHolderImages: {
-    marginTop: '10vh',
+    marginTop: '12px',
   },
   placeHolderImage: {
-    marginTop: '24px',
+    marginTop: '12px',
   },
   cpGrid: {
     display: 'flex',

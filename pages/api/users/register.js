@@ -12,6 +12,11 @@ handler.post(async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password),
+    fullName: req.body.fullName,
+    address: req.body.address,
+    city: req.body.city,
+    postalCode: req.body.postalCode,
+    country: req.body.country,
     isAdmin: false,
   });
   const createdUser = await newUser.save();
@@ -22,6 +27,11 @@ handler.post(async (req, res) => {
     _id: createdUser._id,
     name: createdUser.name,
     email: createdUser.email,
+    fullName: createdUser.fullName,
+    address: createdUser.address,
+    city: createdUser.city,
+    postalCode: createdUser.postalCode,
+    country: createdUser.country,
     isAdmin: createdUser.isAdmin,
   });
 });

@@ -2,6 +2,7 @@ import {
   Avatar,
   Card,
   CircularProgress,
+  Divider,
   Grid,
   List,
   ListItem,
@@ -32,42 +33,45 @@ export default function Reviews({ reviews }) {
       <Grid item xs={12}>
         <List>
           {reviews.map((review) => (
-            <ListItem alignItems="flex-start" key={review._id}>
-              <ListItemAvatar>
-                <Avatar alt={review.reviewerName}>
-                  {review.reviewerName.substring(0, 1)}
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <div className={classes.spaceContent}>
-                    {review.summary}{' '}
-                    <span sx={{ marginLeft: '100px' }}>
-                      {
-                        <Rating
-                          name="read-only"
-                          readOnly
-                          value={review.rating}
-                        />
-                      }
-                    </span>
-                  </div>
-                }
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      <strong>{review.reviewerName}</strong> -
-                    </Typography>
-                    {review.reviewText}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
+            <div>
+              <Divider />
+              <ListItem alignItems="flex-start" key={review._id}>
+                <ListItemAvatar>
+                  <Avatar alt={review.reviewerName}>
+                    {review.reviewerName.substring(0, 1)}
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={
+                    <div className={classes.spaceContent}>
+                      {review.summary}{' '}
+                      <span sx={{ marginLeft: '100px' }}>
+                        {
+                          <Rating
+                            name="read-only"
+                            readOnly
+                            value={review.rating}
+                          />
+                        }
+                      </span>
+                    </div>
+                  }
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        <strong>{review.reviewerName}</strong> -
+                      </Typography>
+                      {review.reviewText}
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+            </div>
           ))}
         </List>
       </Grid>

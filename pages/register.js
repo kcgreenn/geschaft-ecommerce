@@ -47,6 +47,11 @@ export default function Register() {
         name,
         email,
         password,
+        fullName: '',
+        address: '',
+        city: '',
+        postalCode: '',
+        country: '',
       });
       dispatch({ type: 'USER_LOGIN', payload: data });
       Cookies.set('userInfo', JSON.stringify(data));
