@@ -72,7 +72,8 @@ export default function ShopByCategory() {
               <Avatar
                 src={category.image}
                 alt={category.name}
-                className={classes.catAvatar}
+                // className={classes.catAvatar}
+                style={{ width: '128px', height: '128px' }}
               />
               <Typography variant="h2" component="h2">
                 {category.name}
