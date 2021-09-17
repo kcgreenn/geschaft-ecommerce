@@ -86,7 +86,7 @@ export default function Shipping() {
             <Controller
               name="fullName"
               control={control}
-              defaultValue={userInfo.fullName ? userInfo.fullName : ''}
+              defaultValue={userInfo !== null ? userInfo.fullName : ''}
               rules={{
                 required: true,
               }}
@@ -108,7 +108,7 @@ export default function Shipping() {
             <Controller
               name="address"
               control={control}
-              defaultValue={userInfo.address ? userInfo.address : ''}
+              defaultValue={userInfo !== null ? userInfo.address : ''}
               rules={{
                 required: true,
               }}
@@ -130,7 +130,7 @@ export default function Shipping() {
             <Controller
               name="city"
               control={control}
-              defaultValue={userInfo.city ? userInfo.city : ''}
+              defaultValue={userInfo !== null ? userInfo.city : ''}
               rules={{
                 required: true,
               }}
@@ -152,7 +152,7 @@ export default function Shipping() {
             <Controller
               name="postalCode"
               control={control}
-              defaultValue={userInfo.postalCode ? userInfo.postalCode : ''}
+              defaultValue={userInfo !== null ? userInfo.postalCode : ''}
               rules={{
                 required: true,
               }}
@@ -176,7 +176,7 @@ export default function Shipping() {
             <Controller
               name="country"
               control={control}
-              defaultValue={userInfo.country ? userInfo.country : ''}
+              defaultValue={userInfo !== null ? userInfo.country : ''}
               rules={{
                 required: true,
               }}
