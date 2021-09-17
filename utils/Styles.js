@@ -127,7 +127,7 @@ const useStyles = makeStyles({
     minHeight: '80vh',
   },
   catAvatar: {
-    height: 'auto',
+    height: '128px',
     width: '128px',
   },
   pastOrderBtn: {
