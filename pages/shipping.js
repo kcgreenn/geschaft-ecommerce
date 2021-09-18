@@ -69,6 +69,7 @@ export default function Shipping() {
       JSON.stringify({ fullName, address, city, postalCode, country })
     );
     router.push('/placeOrder');
+    const fillDefaultValues = () => {};
   };
   return (
     <Layout title="Shipping Address">
@@ -86,7 +87,8 @@ export default function Shipping() {
             <Controller
               name="fullName"
               control={control}
-              defaultValue={userInfo !== null ? userInfo.fullName : ''}
+              // defaultValue={userInfo !== null ? userInfo.fullName : ''}
+              defaultValue={''}
               rules={{
                 required: true,
               }}
@@ -108,7 +110,7 @@ export default function Shipping() {
             <Controller
               name="address"
               control={control}
-              defaultValue={userInfo !== null ? userInfo.address : ''}
+              defaultValue={''}
               rules={{
                 required: true,
               }}
@@ -130,7 +132,7 @@ export default function Shipping() {
             <Controller
               name="city"
               control={control}
-              defaultValue={userInfo !== null ? userInfo.city : ''}
+              defaultValue={''}
               rules={{
                 required: true,
               }}
@@ -152,7 +154,7 @@ export default function Shipping() {
             <Controller
               name="postalCode"
               control={control}
-              defaultValue={userInfo !== null ? userInfo.postalCode : ''}
+              defaultValue={''}
               rules={{
                 required: true,
               }}
@@ -176,7 +178,7 @@ export default function Shipping() {
             <Controller
               name="country"
               control={control}
-              defaultValue={userInfo !== null ? userInfo.country : ''}
+              defaultValue={''}
               rules={{
                 required: true,
               }}

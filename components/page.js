@@ -156,7 +156,9 @@ export default function Page({ index, category, totalResults }) {
       <Grid container>
         <Grid item xs={12} md={10}>
           <Typography variant="h2" component="h2">
-            Category:&nbsp;{category}
+            {category == 'Treats'
+              ? 'Buy One Get One Sale on Treats'
+              : `Category:&nbsp;${category}`}
           </Typography>
         </Grid>
         <Grid item xs={12} md={2}>

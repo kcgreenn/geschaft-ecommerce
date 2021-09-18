@@ -107,7 +107,11 @@ function CartScreen() {
                       </TableCell>
                       <TableCell align="right">
                         <Select
-                          value={item.quantity}
+                          value={
+                            item.category.includes('Treats')
+                              ? item.quantity + 1
+                              : item.quantity
+                          }
                           onChange={(e) =>
                             updateCartHandler(item, e.target.value)
                           }

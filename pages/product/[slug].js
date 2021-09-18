@@ -233,8 +233,10 @@ export default function ProductScreen(props) {
                           </emphasis>{' '}
                           <strong>${product.price.toFixed(2)}</strong>
                         </span>
+                      ) : product.category.includes('Treats') ? (
+                        <strong>${product.price.toFixed(2)} (BOGO Sale)</strong>
                       ) : (
-                        <strong>${product.price.toFixed(2)}</strong>
+                        ''
                       )}
                     </Typography>
                   </Grid>

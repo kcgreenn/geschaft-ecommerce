@@ -163,7 +163,11 @@ function PlaceOrder() {
                             </NextLink>
                           </TableCell>
                           <TableCell align="right">
-                            <Typography>{item.quantity}</Typography>
+                            <Typography>
+                              {item.category.includes('Treats')
+                                ? item.quantity + 1
+                                : item.quantity}
+                            </Typography>
                           </TableCell>
                           <TableCell align="right">
                             <Typography>${item.price}</Typography>
