@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema(
     also_view: [{ type: String, required: false }],
     price: { type: Number, required: true },
     asin: { type: String, required: true },
-    imageURLHighRes: { type: String, required: true },
+    imageURLHighRes: { type: String, required: false },
     imageURL: { type: String, requried: true },
     rating: { type: Number, required: true },
     countInStock: { type: Number, required: true },
