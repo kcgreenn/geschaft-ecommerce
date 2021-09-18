@@ -49,9 +49,9 @@ export default function ShopByCategory() {
     // },
     {
       key: 8,
-      name: 'Health',
+      name: 'Health Supplies',
       image: '/images/health1small.jpg',
-      link: '/Health',
+      link: '/Health Supplies',
     },
   ];
   return (

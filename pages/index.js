@@ -121,11 +121,14 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
   await db.connect();
-  const products = await Product.aggregate([{ $sample: { size: 3 } }]);
+  const products = await Product.find({
+    asin: { $in: ['B001QC0E66', 'B000255OSG', 'B000084DWM'] },
+  });
   db.disconnect();
   return {
     props: {
-      products: products.map(db.convertDocToObj),
+      // products: products.map(db.convertDocToObj),
+      products: JSON.parse(JSON.stringify(products)),
     },
   };
 }

@@ -90,7 +90,7 @@ export default function ProductScreen(props) {
       <Typography variant="h2" component="h2">
         Description:
       </Typography>
-      <Typography>{product.description}</Typography>
+      <Typography>{product.description.substring(0, 2048)}</Typography>
     </Card>
   );
 
@@ -224,8 +224,18 @@ export default function ProductScreen(props) {
                   </Grid>
                   <Grid item xs={6}>
                     <Typography color="primary">
-                      {' '}
-                      ${product.price.toFixed(2)}
+                      {['B001QC0E66', 'B000255OSG', 'B000084DWM'].includes(
+                        product.asin
+                      ) ? (
+                        <span>
+                          <emphasis className={classes.strikeThrough}>
+                            ${(product.price * 1.2).toFixed(2)}
+                          </emphasis>{' '}
+                          <strong>${product.price.toFixed(2)}</strong>
+                        </span>
+                      ) : (
+                        <strong>${product.price.toFixed(2)}</strong>
+                      )}
                     </Typography>
                   </Grid>
                 </Grid>

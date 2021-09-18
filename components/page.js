@@ -13,6 +13,7 @@ import {
   CircularProgress,
   Grid,
   Typography,
+  useMediaQuery,
 } from '@material-ui/core';
 import NextLink from 'next/link';
 import useStyles from '../utils/Styles';
@@ -27,67 +28,128 @@ export default function Page({ index, category, totalResults }) {
 
   const round2 = (number) => Math.round(number * 100 + Number.EPSILON) / 100;
 
-  if (error) return <div></div>;
-  if (!data)
-    return (
-      <div>
-        <Grid container className={classes.placeHolderImages}>
-          <Grid item xs={12} md={10}>
-            <Typography variant="h2" component="h2">
-              <Skeleton variant="rect" width="128px" height="12px" />
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={2}>
-            <Typography variant="h2" component="h2">
-              <Skeleton variant="rect" width="128px" height="12px" />
-            </Typography>
-          </Grid>
+  const matches = useMediaQuery('(min-width:600px)');
 
-          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
-            <Skeleton variant="rect" width={320} height={240} />
-            <Box pt={0.5}>
-              <Skeleton width="75%" />
-              <Skeleton width="60%" />
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
-            <Skeleton variant="rect" width={320} height={240} />
-            <Box pt={0.5}>
-              <Skeleton width="75%" />
-              <Skeleton width="60%" />
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
-            <Skeleton variant="rect" width={320} height={240} />
-            <Box pt={0.5}>
-              <Skeleton width="75%" />
-              <Skeleton width="60%" />
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
-            <Skeleton variant="rect" width={320} height={240} />
-            <Box pt={0.5}>
-              <Skeleton width="75%" />
-              <Skeleton width="60%" />
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
-            <Skeleton variant="rect" width={320} height={240} />
-            <Box pt={0.5}>
-              <Skeleton width="75%" />
-              <Skeleton width="60%" />
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={4} className={classes.placeHolderImage}>
-            <Skeleton variant="rect" width={320} height={240} />
-            <Box pt={0.5}>
-              <Skeleton width="75%" />
-              <Skeleton width="60%" />
-            </Box>
-          </Grid>
+  const placeHolders = matches ? (
+    <div>
+      <Grid container className={classes.placeHolderImages}>
+        <Grid item xs={12} md={10}>
+          <Typography variant="h2" component="h2">
+            <Skeleton variant="rect" width="128px" height="12px" />
+          </Typography>
         </Grid>
-      </div>
-    );
+        <Grid item xs={12} md={2}>
+          <Typography variant="h2" component="h2">
+            <Skeleton variant="rect" width="128px" height="12px" />
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={320} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={320} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={320} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={320} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={320} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={320} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+      </Grid>
+    </div>
+  ) : (
+    <div>
+      <Grid container className={classes.placeHolderImages}>
+        <Grid item xs={12} md={10}>
+          <Typography variant="h2" component="h2">
+            <Skeleton variant="rect" width="128px" height="12px" />
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <Typography variant="h2" component="h2">
+            <Skeleton variant="rect" width="128px" height="12px" />
+          </Typography>
+        </Grid>
+
+        <Grid item xs={6} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={'90%'} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={6} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={'90%'} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={6} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={'90%'} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={6} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={'90%'} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={6} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={'90%'} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+        <Grid item xs={6} md={4} className={classes.placeHolderImage}>
+          <Skeleton variant="rect" width={'90%'} height={240} />
+          <Box pt={0.5}>
+            <Skeleton width="75%" />
+            <Skeleton width="60%" />
+          </Box>
+        </Grid>
+      </Grid>
+    </div>
+  );
+
+  if (error) return <div></div>;
+  if (!data) return placeHolders;
 
   return (
     <div>
@@ -120,9 +182,10 @@ export default function Page({ index, category, totalResults }) {
                   <CardContent>
                     <Typography className={classes.cardTitle}>
                       {' '}
-                      {product.title.length > 84
-                        ? product.title.substring(0, 84) + '...'
-                        : product.title.substring(0, 84)}
+                      {product.title.length > 39
+                        ? product.title.substring(0, 39) + '...'
+                        : product.title +
+                          '\u00A0'.repeat(39 - product.title.length)}
                     </Typography>
                   </CardContent>
                 </CardActionArea>

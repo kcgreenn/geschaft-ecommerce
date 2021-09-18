@@ -131,7 +131,7 @@ export default function Layout({ children, title, description }) {
                       aria-controls="simple-menu"
                       aria-haspopup="true"
                       onClick={handleMenuOpen}
-                      className={classes.navbarButton}
+                      className={classes.userNavbarButton}
                     >
                       {userInfo.name}
                     </Button>

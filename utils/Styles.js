@@ -21,12 +21,16 @@ const useStyles = makeStyles({
   modalContent: {
     minWidth: 240,
     maxWidth: 480,
-    backgroundColor: '#ccc',
     boxShadow: '8px 8px 3px #333',
     padding: 24,
   },
   navbarButton: {
     color: '#ffffff',
+    textTransform: 'initial',
+    marginLeft: 20,
+  },
+  userNavbarButton: {
+    color: '#f09000',
     textTransform: 'initial',
     marginLeft: 20,
   },
@@ -91,7 +95,8 @@ const useStyles = makeStyles({
     alignItems: 'center',
   },
   catRoot: {
-    flexGrow: 1,
+    display: 'flex',
+    justifyContent: 'center',
   },
   loader: {
     width: '100vw',
@@ -101,7 +106,7 @@ const useStyles = makeStyles({
     alignItems: 'center',
   },
   cardTitle: {
-    minHeight: 48,
+    minHeight: 36,
     maxHeight: 72,
     overflow: 'hidden',
   },
