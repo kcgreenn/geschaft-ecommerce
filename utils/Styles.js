@@ -179,6 +179,7 @@ const useStyles = makeStyles({
   },
   alsoBoughtSection: {
     marginTop: '24px',
+    overflow: 'hidden',
   },
   spaceContent: {
     display: 'flex',

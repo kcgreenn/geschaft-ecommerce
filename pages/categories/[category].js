@@ -18,8 +18,10 @@ import Layout from '../../components/Layout';
 import NextLink from 'next/link';
 import useStyles from '../../utils/Styles';
 import Page from '../../components/page';
+import db from '../../utils/db';
+import Product from '../../Models/Product';
 
-const Category = () => {
+const Category = ({ count, products }) => {
   const classes = useStyles();
   const router = useRouter();
   const { category } = router.query;
@@ -31,19 +33,15 @@ const Category = () => {
     window.scrollTo(0, 0);
   };
 
-  const getCount = async () => {
-    const { data } = await axios.get(`/api/categories/${category}/count`);
-    setCatCount(data.count);
-  };
-
-  useEffect(() => {
-    getCount();
-  }, [catCount]);
-
   return (
     <Layout>
       <div className={classes.pagiSection}>
-        <Page index={pageIndex} category={category} totalResults={catCount} />
+        <Page
+          index={pageIndex}
+          category={category}
+          totalResults={count}
+          initialProducts={products}
+        />
         <div style={{ display: 'none' }}>
           <Page
             index={pageIndex + 1}
@@ -54,9 +52,9 @@ const Category = () => {
       </div>
       <Pagination
         count={
-          Math.round(catCount / 15) > 1
-            ? Math.round(catCount / 15) - 1
-            : Math.round(catCount / 15)
+          Math.round(count / 15) > 1
+            ? Math.round(count / 15) - 1
+            : Math.round(count / 15)
         }
         color="primary"
         page={pageIndex ? pageIndex : 1}
@@ -69,3 +67,26 @@ const Category = () => {
 };
 
 export default Category;
+
+export async function getServerSideProps({ params }) {
+  const category = params.category;
+  await db.connect();
+  const count = await Product.count({ category: category });
+  const products = await Product.find(
+    {
+      category: category,
+    },
+    null,
+    {
+      skip: 0,
+      limit: 15,
+    }
+  );
+  await db.disconnect();
+  return {
+    props: {
+      count: count,
+      products: JSON.parse(JSON.stringify(products)),
+    }, // will be passed to the page component as props
+  };
+}
