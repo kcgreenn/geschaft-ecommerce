@@ -35,17 +35,17 @@ export default function ProductScreen(props) {
   const { state, dispatch } = useContext(Store);
   const { product, alsoBought, reviews } = props;
   const [open, setOpen] = useState(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const matches = useMediaQuery('(min-width:600px)');
 
   const classes = useStyles();
   const [showMore, setShowMore] = React.useState(false);
-  let selectedQuantity = 1;
 
   if (!product) {
     return <div>Product Not Found</div>;
   }
 
-  useEffect(() => {}, [product]);
+  useEffect(() => {}, [product, selectedQuantity]);
 
   const addToCartHandler = async () => {
     const { data } = await axios.get(`/api/products/${product._id}`);
@@ -66,7 +66,7 @@ export default function ProductScreen(props) {
   };
 
   const updateQuantityHandler = (quantity) => {
-    selectedQuantity = quantity;
+    setSelectedQuantity(quantity);
   };
 
   const handleCategoryClick = (element) => {
