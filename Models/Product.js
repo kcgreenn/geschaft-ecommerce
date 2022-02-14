@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+// Mongoose schema for a product
+// Contains price, title, category, rating, etc...
 const productSchema = new mongoose.Schema(
   {
     category: [{ type: String, required: true }],
