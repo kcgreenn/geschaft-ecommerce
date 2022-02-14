@@ -4,7 +4,6 @@ This is an ecommerce demonstration project built with [Next.js](https://nextjs.o
 
 [![A small dog moving incredibly fast.](https://www.pawmart.xyz/images/dog1small.jpg)]
 
-bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 ## Getting Started
 
 First, run the development server:
