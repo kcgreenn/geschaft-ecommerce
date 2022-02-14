@@ -2,7 +2,7 @@
 
 This is an ecommerce demonstration project built with [Next.js](https://nextjs.org/) and [MongoDB](https://www.mongodb.com/). A live version can be found at [Pawmart.xyz](https://pawmart.xyz).
 
-[A cute cat eating.](https://www.pawmart.xyz/_next/image?url=%2Fimages%2Fcatfood1small.jpg&w=1920&q=75)
+[!A cute cat eating.](https://www.pawmart.xyz/_next/image?url=%2Fimages%2Fcatfood1small.jpg&w=1920&q=75)
 
 bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 ## Getting Started
