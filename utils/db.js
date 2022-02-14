@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
-const connection = {};
+const connection = {};      // An object containing mongodb connection data
 
+// Function to connect to the mongodb server
 async function connect() {
   if (connection.isConnected) {
     console.log('already connected');
@@ -23,6 +24,7 @@ async function connect() {
   connection.isConnected = db.connections[0].readyState;
 }
 
+// Function to disconnect from the mongodb server
 async function disconnect() {
   if (connection.isConnected) {
     if (process.env.NODE_ENV === 'production') {
@@ -34,6 +36,7 @@ async function disconnect() {
   }
 }
 
+// Converts the mongodb document id from an object to a string
 function convertDocToObj(doc) {
   doc._id = doc._id.toString();
   doc.createdAt = doc.createdAt.toString();
