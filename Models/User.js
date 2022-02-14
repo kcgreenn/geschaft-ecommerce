@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+// Mongoose schema for a registered user.
+// Contains name, addres, hashed password, etc...
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
