@@ -10,13 +10,17 @@ const handler = nc({
 // Middleware to check authentication status
 handler.use(isAuth);
 
+// API endpoint to create a new order
 handler.post(async (req, res) => {
-  await db.connect();
+  await db.connect();       // Connect to database
+  // Create new order with information from the request
   const newOrder = new Order({
     ...req.body,
     user: req.user._id,
   });
+  // Save the order to database
   const order = await newOrder.save();
+  // Return success status code with the confirmed order in the response
   res.status(201).send(order);
 });
 
