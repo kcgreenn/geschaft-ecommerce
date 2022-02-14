@@ -6,9 +6,13 @@ import { signToken } from '../../../utils/auth';
 
 const handler = nc();
 
+// API endpoint to create a new user profile
+// req.body should contain:
+//    name, email, password, fullName, address, city, postalCode,
+//    country
 handler.post(async (req, res) => {
-  await db.connect();
-  const newUser = new User({
+  await db.connect();                           // Connect to database
+  const newUser = new User({                    // Create new user
     name: req.body.name,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password),
@@ -19,10 +23,10 @@ handler.post(async (req, res) => {
     country: req.body.country,
     isAdmin: false,
   });
-  const createdUser = await newUser.save();
-  await db.disconnect();
-  const token = signToken(createdUser);
-  res.send({
+  const createdUser = await newUser.save();       // Save new user to database
+  await db.disconnect();                          // Disconnect from database
+  const token = signToken(createdUser);           // Create json web token for user authentication
+  res.send({                                      // Return json web token and user info in response to client request
     token,
     _id: createdUser._id,
     name: createdUser.name,
