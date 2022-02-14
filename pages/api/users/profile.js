@@ -5,8 +5,10 @@ import db from '../../../utils/db';
 import { signToken, isAuth } from '../../../utils/auth';
 
 const handler = nc();
+// Middleware to check user authentication
 handler.use(isAuth);
 
+// API endpoint to retrieve user profile
 handler.put(async (req, res) => {
   await db.connect();
   const user = await User.findById(req.user._id);
