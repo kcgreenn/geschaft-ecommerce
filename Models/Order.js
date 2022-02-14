@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+// Mongoose schema for a customer order
+// Contains information on the user, the items ordered, 
+// shipping address, payment method and delivery status
 const orderSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
