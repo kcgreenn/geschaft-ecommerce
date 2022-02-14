@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+// Mongoose schema for product reviews.
+// Contains reviewer info, asin of reviewed product, etc...
 const reviewSchema = new mongoose.Schema(
   {
     rating: { type: String, required: true },
