@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 
+// Dummy data user in early development process
 const data = {
   // products: [
   //   {
