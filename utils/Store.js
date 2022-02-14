@@ -1,7 +1,9 @@
 import { createContext, useReducer } from 'react';
 import Cookies from 'js-cookie';
 
+// Create App State context
 export const Store = createContext();
+// Create initial state object
 const initialState = {
   darkMode: Cookies.get('darkMode') === 'ON' ? true : false,
   cart: {
@@ -19,6 +21,7 @@ const initialState = {
     : null,
 };
 
+// Reducer function to match action types to state changes
 function reducer(state, action) {
   switch (action.type) {
     case 'DARK_MODE_ON':
@@ -75,6 +78,7 @@ function reducer(state, action) {
   }
 }
 
+// Provider of the App State context
 export function StoreProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };
