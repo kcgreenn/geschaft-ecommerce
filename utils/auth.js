@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 
+// Function to create a json web token as part of user authentication
 const signToken = (user) => {
   return jwt.sign(
     {
@@ -15,6 +16,7 @@ const signToken = (user) => {
   );
 };
 
+// Function to confirm user authentication from request headers
 const isAuth = async (req, res, next) => {
   const { authorization } = req.headers;
   if (authorization) {
