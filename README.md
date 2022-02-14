@@ -2,7 +2,7 @@
 
 This is an ecommerce demonstration project built with [Next.js](https://nextjs.org/) and [MongoDB](https://www.mongodb.com/). A live version can be found at [Pawmart.xyz](https://pawmart.xyz).
 
-[![A small dog moving incredibly fast.](https://www.pawmart.xyz/images/dog1small.jpg)]
+![A small dog moving incredibly fast.](https://www.pawmart.xyz/images/dog1small.jpg)
 
 ## Getting Started
 
